@@ -227,6 +227,35 @@ export const getResourcesForSelectedCareerPath = async (req, res) => {
   }
 };
 
+// Add a learning resource to user's savedLearningResources
+export const saveLearningResourceToUser = async (req, res) => {
+  const userId = req.userId;
+  const { resourceId } = req.body;
+  try {
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ message: "User not found" });
+    if (!user.savedLearningResources.includes(resourceId)) {
+      user.savedLearningResources.push(resourceId);
+      await user.save();
+    }
+    res.status(200).json({ message: "Resource saved" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Get all saved learning resources for the user
+export const getUserSavedLearningResources = async (req, res) => {
+  const userId = req.userId;
+  try {
+    const user = await User.findById(userId).populate("savedLearningResources");
+    if (!user) return res.status(404).json({ message: "User not found" });
+    res.status(200).json({ resources: user.savedLearningResources });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 export default {
   userRegister,
   userLogin,
@@ -235,4 +264,6 @@ export default {
   addStudentProject,
   getStudentProjects,
   deleteStudentProject,
+  saveLearningResourceToUser,
+  getUserSavedLearningResources,
 };

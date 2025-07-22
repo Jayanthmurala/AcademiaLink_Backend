@@ -105,6 +105,12 @@ const userSchema = new mongoose.Schema(
         ref: "Event",
       },
     ],
+    savedLearningResources: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "LearningResource",
+      },
+    ],
     selectedCareerPath: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "CareerPath",
