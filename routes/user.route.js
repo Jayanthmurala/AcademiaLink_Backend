@@ -13,6 +13,7 @@ const userRutes = Router();
 
 userRutes.post("/register", userController.userRegister);
 userRutes.post("/login", userController.userLogin);
+userRutes.get("/profile", userMiddelware, userController.getProfile);
 userRutes.put("/student/profile", userMiddelware, userController.updateUser);
 userRutes.put("/avatar", userMiddelware, userController.uploadAvatar);
 userRutes.post(

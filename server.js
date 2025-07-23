@@ -2,6 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import dbConnection from "./db/dbconnection/db.connection.js";
 import userRutes from "./routes/user.route.js";
+import facultyRoutes from "./routes/faculty.route.js";
+import publicationRoutes from "./routes/publication.route.js";
 import cors from "cors";
 import imageRutes from "./routes/imageUpload.route.js";
 import skillRoutes from "./routes/skill.route.js";
@@ -20,6 +22,8 @@ app.get("/", (req, res) => {
 
 // Routes
 app.use("/api/v1/", userRutes);
+app.use("/api/v1/faculty", facultyRoutes);
+app.use("/api/v1/publications", publicationRoutes);
 app.use("/api/v1/image", imageRutes);
 app.use("/api/skills", skillRoutes);
 app.use("/api/learning-resources", learningResourceRoutes);
