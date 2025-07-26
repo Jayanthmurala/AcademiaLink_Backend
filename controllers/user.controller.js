@@ -248,7 +248,7 @@ export const saveLearningResourceToUser = async (req, res) => {
 const getProfile = async (req, res) => {
   const userId = req.userId;
   try {
-    const user = await User.findById(userId).select('-password');
+    const user = await User.findById(userId).select("-password");
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -280,6 +280,4 @@ export default {
   addStudentProject,
   getStudentProjects,
   deleteStudentProject,
-  saveLearningResourceToUser,
-  getUserSavedLearningResources,
 };

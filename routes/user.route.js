@@ -5,8 +5,6 @@ import {
   setSelectedCareerPath,
   getSelectedCareerPath,
   getResourcesForSelectedCareerPath,
-  saveLearningResourceToUser,
-  getUserSavedLearningResources,
 } from "../controllers/user.controller.js";
 
 const userRutes = Router();
@@ -45,15 +43,5 @@ userRutes.get(
   "/student/selected-career-path/resources",
   userMiddelware,
   getResourcesForSelectedCareerPath
-);
-userRutes.post(
-  "/student/save-learning-resource",
-  userMiddelware,
-  saveLearningResourceToUser
-);
-userRutes.get(
-  "/student/saved-learning-resources",
-  userMiddelware,
-  getUserSavedLearningResources
 );
 export default userRutes;
